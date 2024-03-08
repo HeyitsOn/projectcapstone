@@ -1,11 +1,11 @@
 import {connection as db} from "../Config/index.js"
-class packages{
+class Packages{
     fetchPackages(req, res){
         const qry = `
         SELECT packID, packName, packDescription,
-        packavaiblity, packamount, packUrl, userID
-        FROM Packages;
-        `
+        packavaiblity, packamount, packUrl,
+        FROM packages;
+        `;
         db.query(qry, (err, results)=>{
             if(err) throw err 
             res.json({
@@ -14,13 +14,17 @@ class packages{
             })
         })
     }
-    fetchProduct(req, res){
+    fetchPackages(req, res){
         const qry = `
-        SELECT  packID, packName, packDescription,
-        packavaiblity, packamount, packUrl
+        SELECT  packID,
+         packName, 
+         packDescription,
+        packavaiblity, 
+        packamount,
+        packUrl
         FROM Packages
-        WHERE PackID = ${req.params.id};
-        `
+        WHERE packID = ${req.params.id};
+        `;
         db.query(qry, (err, result)=>{
             if(err) throw err 
             res.json({
@@ -31,7 +35,7 @@ class packages{
     }
     addPackage(req, res) {
         const qry = `
-        INSERT INTO Packages
+        INSERT INTO packages
         SET ?;
         `
         db.query(qry, [req.body], (err)=>{
@@ -46,7 +50,7 @@ class packages{
         const qry = `
         UPDATE packages
         SET ?
-        WHERE PackID = ${req.params.id};
+        WHERE packID = ${req.params.id};
         `
         db.query(qry, [req.body], (err)=>{
             if(err) throw err
@@ -59,7 +63,7 @@ class packages{
     deletePackage(req, res) {
         const qry = `
         DELETE FROM packages
-        WHERE PackID = ${req.params.id};
+        WHERE packID = ${req.params.id};
         `
         db.query(qry, (err)=>{
             if(err) throw err 
@@ -70,4 +74,4 @@ class packages{
         })
     }
 }
-export { packages };
+export { Packages };

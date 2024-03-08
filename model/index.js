@@ -1,11 +1,13 @@
-import { Users} from "../model/users";
-import { packages } from "./packages.js";
+import { Users} from "./users.js";
+import { Packages } from "./packages.js";
+import { WeddingBooking } from "./weddingBooking.js";
 
-
-let usersInstance = new users();
-let packagesInstance = new packages();
+let users = new Users();
+let packages = new Packages();
+let weddingBooking =  new WeddingBooking();
 
 export{
-    usersInstance,
-    packagesInstance
+    users,
+    packages,
+    WeddingBooking
 }

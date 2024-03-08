@@ -1,9 +1,9 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import { weddingBooking } from "/weddingBookingController";
+import { WeddingBooking } from '../model/weddingBooking';
 
 const BookingRouter = express.Router();
-const jsonParser = bodyParser.json();
+// const jsonParser = bodyParser.json();
 
 // Fetch all bookings
 BookingRouter.get('/', async (req, res) => {

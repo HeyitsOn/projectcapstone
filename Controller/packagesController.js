@@ -1,13 +1,12 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import { packages } from "../model/packages.js";
+import { packages } from "../model/index.js";
 
 
-const PackageRouter = express.Router();
-const Packages = new packages(); // Initialize Packages outside of route handlers
+const packageRouter = express.Router();
 
 // Fetch all Packages
-PackageRouter.get('/', (req, res) => {
+packageRouter.get('/', (req, res) => {
     try {
         packages.fetchPackages(req, res);
     } catch (e) {
@@ -20,7 +19,7 @@ PackageRouter.get('/', (req, res) => {
 });
 
 // Fetch a specific Package by ID
-PackageRouter.get('/:id', (req, res) => {
+packageRouter.get('/:id', (req, res) => {
     try {
         packages.fetchPackage(req, res);
     } catch (e) {
@@ -33,7 +32,7 @@ PackageRouter.get('/:id', (req, res) => {
 });
 
 // Add a new Package
-PackageRouter.post('/addPackage', bodyParser.json(), (req, res) => {
+packageRouter.post('/addPackage', bodyParser.json(), (req, res) => {
     try {
         packages.addPackage(req, res);
     } catch (e) {
@@ -46,7 +45,7 @@ PackageRouter.post('/addPackage', bodyParser.json(), (req, res) => {
 });
 
 // Update a Package by ID
-PackageRouter.patch('/update/:id', bodyParser.json(), (req, res) => {
+packageRouter.patch('/update/:id', bodyParser.json(), (req, res) => {
     try {
         packages.updatePackage(req, res);
     } catch (e) {
@@ -59,7 +58,7 @@ PackageRouter.patch('/update/:id', bodyParser.json(), (req, res) => {
 });
 
 // Delete a Package by ID
-PackageRouter.delete('/delete/:id', (req, res) => {
+packageRouter.delete('/delete/:id', (req, res) => {
     try {
         packages.deletePackage(req, res);
     } catch (e) {
@@ -71,4 +70,4 @@ PackageRouter.delete('/delete/:id', (req, res) => {
     }
 });
 
-export default { PackageRouter };
+export { packageRouter };
