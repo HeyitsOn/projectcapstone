@@ -11,7 +11,7 @@ class Packages{
         FROM packages;
         `;
         db.query(qry, (err, results)=>{
-            if(err) console.log(err) 
+            if(err) throw err 
             res.json({
                 status: res.statusCode,
                 results
