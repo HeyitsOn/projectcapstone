@@ -1,14 +1,13 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import { WeddingBooking } from '../model/weddingBooking';
+import { weddingBooking } from '../model/index.js';  // Assuming the correct path for weddingBooking model
 
 const BookingRouter = express.Router();
-// const jsonParser = bodyParser.json();
 
 // Fetch all bookings
 BookingRouter.get('/', async (req, res) => {
     try {
-        const bookings = await BookingController.fetchAll();
+        const bookings = await weddingBooking.fetchBookings(req, res);  // Updated to use fetchBookings method
         res.json(bookings);
     } catch (err) {
         res.status(500).json({ message: err.message });
@@ -18,7 +17,7 @@ BookingRouter.get('/', async (req, res) => {
 // Fetch a specific booking by ID
 BookingRouter.get('/:id', async (req, res) => {
     try {
-        const booking = await BookingController.fetchById(req.params.id);
+        const booking = await weddingBooking.fetchBooking(req.params.id);  // Updated to use fetchBooking method
         res.json(booking);
     } catch (err) {
         res.status(500).json({ message: err.message });
@@ -26,9 +25,9 @@ BookingRouter.get('/:id', async (req, res) => {
 });
 
 // Add a new booking
-BookingRouter.post('/addBooking', jsonParser, async (req, res) => {
+BookingRouter.post('/addBooking', bodyParser.json(), async (req, res) => {
     try {
-        const newBooking = await BookingController.addBooking(req.body);
+        const newBooking = await weddingBooking.addBooking(req.body);  // Updated to use addBooking method
         res.status(201).json(newBooking);
     } catch (err) {
         res.status(400).json({ message: err.message });
@@ -36,9 +35,9 @@ BookingRouter.post('/addBooking', jsonParser, async (req, res) => {
 });
 
 // Update a booking by ID
-BookingRouter.patch('/update/:id', jsonParser, async (req, res) => {
+BookingRouter.patch('/update/:id', bodyParser.json(), async (req, res) => {
     try {
-        const updatedBooking = await BookingController.updateBooking(req.params.id, req.body);
+        const updatedBooking = await weddingBooking.updateBooking(req.params.id, req.body);  // Updated to use updateBooking method
         res.json(updatedBooking);
     } catch (err) {
         res.status(400).json({ message: err.message });
@@ -48,7 +47,7 @@ BookingRouter.patch('/update/:id', jsonParser, async (req, res) => {
 // Delete a booking by ID
 BookingRouter.delete('/delete/:id', async (req, res) => {
     try {
-        await BookingController.deleteBooking(req.params.id);
+        await weddingBooking.deleteBooking(req.params.id);  // Updated to use deleteBooking method
         res.json({ message: 'Booking deleted successfully' });
     } catch (err) {
         res.status(500).json({ message: err.message });

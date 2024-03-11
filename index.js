@@ -41,6 +41,8 @@ app.use(
 // Routes
 app.use('/users', userRouter);
 app.use('/packages', packageRouter);
+app.use('/weddingBooking', packageRouter);
+
 
 // Default route
 app.get('^/$|/Backend', (req, res) => {

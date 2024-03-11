@@ -1,6 +1,5 @@
 import "dotenv/config"
 import jwt from "jsonwebtoken";
-
 const {sign, verify} = jwt
 
 function createToken(user){
