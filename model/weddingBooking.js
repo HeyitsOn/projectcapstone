@@ -1,7 +1,7 @@
 import { connection as db } from "../Config/index.js";
 
 class WeddingBooking {
-    fetchBooking(req, res) {
+    fetchBookings(req, res) {
         const qry = `
         SELECT booking_id, 
         customer_name,
@@ -23,7 +23,7 @@ class WeddingBooking {
 
     async fetchBooking(req, res) {
 
-        const qry = `SELECT bookingID, 
+        const qry = `SELECT booking_id, 
         customer_name, 
         customer_email,
         event_date, 

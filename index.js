@@ -3,8 +3,10 @@ import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import path from 'path';
 import { userRouter } from './Controller/usersController.js';
+import { BookingRouter } from './Controller/weddingBookingController.js';
 import {packageRouter} from './Controller/packagesController.js';
 import { errorHandling } from './middleware/ErrorHandling.js';
+
 // import {AuthenticateUser } from './middleware/AuthenticateUser';
 
 const app = express();
@@ -41,7 +43,7 @@ app.use(
 // Routes
 app.use('/users', userRouter);
 app.use('/packages', packageRouter);
-app.use('/weddingBooking', packageRouter);
+app.use('/weddingBooking', BookingRouter);
 
 
 // Default route

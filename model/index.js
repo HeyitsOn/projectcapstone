@@ -9,5 +9,5 @@ let weddingBooking =  new WeddingBooking();
 export{
     users,
     packages,
-    WeddingBooking
+    weddingBooking
 }
