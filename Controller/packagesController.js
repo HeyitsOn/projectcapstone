@@ -23,7 +23,7 @@ packageRouter.get('/:id', (req, res) => {
     try {
         packages.fetchPackage(req, res);
     } catch (e) {
-        console.error("Failed to retrieve a Package:", e);
+        // console.error("Failed to retrieve a Package:", e);
         res.status(500).json({
             status: res.statusCode,
             msg: 'Failed to retrieve a Package. Please try again later.'

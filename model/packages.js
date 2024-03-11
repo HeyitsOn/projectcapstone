@@ -1,9 +1,13 @@
 import {connection as db} from "../Config/index.js"
 class Packages{
     fetchPackages(req, res){
-        const qry = `
-        SELECT packID, packName, packDescription,
-        packavaiblity, packamount, packUrl,
+
+        const qry = ` SELECT packID,
+         packName, 
+         packDescription,
+        packavaiblity,
+        packamount,
+         packUrl
         FROM packages;
         `;
         db.query(qry, (err, results)=>{
@@ -14,7 +18,7 @@ class Packages{
             })
         })
     }
-    fetchPackages(req, res){
+    fetchPackage(req, res) { // Change the method name here
         const qry = `
         SELECT  packID,
          packName, 
@@ -22,19 +26,19 @@ class Packages{
         packavaiblity, 
         packamount,
         packUrl
-        FROM Packages
+        FROM packages
         WHERE packID = ${req.params.id};
         `;
-        db.query(qry, (err, result)=>{
-            if(err) throw err 
+        db.query(qry, (err, result) => {
+            if (err) throw err;
             res.json({
                 status: res.statusCode,
                 result: result[0]
-            })
-        })
+            });
+        });
     }
     // addPackage
-    async register(req, res) {
+    addPackage(req, res) {
         const qry = `
         INSERT INTO packages
         SET ?;
