@@ -62,7 +62,7 @@ BookingRouter.patch('/update/:id', bodyParser.json(), async (req, res) => {
 // Delete a booking by ID
 BookingRouter.delete('/delete/:id', async (req, res) => {
     try {
-         weddingBooking.deleteBooking(req.params.id);  // Updated to use deleteBooking method
+         weddingBooking.deleteBooking(req, res);  // Updated to use deleteBooking method
         // res.json({ message: 'Booking deleted successfully' });
     }  catch (err) {
         res.json({

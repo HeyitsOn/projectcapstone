@@ -77,7 +77,7 @@ class WeddingBooking {
         WHERE booking_id = ${req.params.id};
         `;
         db.query(qry, (err) => {
-            if (err) throw err;
+            if (err) console.log(err);;
             res.json({
                 status: res.statusCode,
                 msg: "The booking information has been deleted."
