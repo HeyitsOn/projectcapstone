@@ -3,7 +3,7 @@ import { hash, compare } from 'bcrypt';
 import { createToken } from "../middleware/AuthenticateUser.js";
 
 class Users {
-    async fetchUsers(req, res) {
+    fetchUsers(req, res) {
      
             const qry = `SELECT userID,
                                 firstName,
@@ -29,7 +29,7 @@ class Users {
             });
         }
 
-    async fetchUser(req, res) {
+ fetchUser(req, res) {
         
             const qry = `SELECT userID,
                                 firstName,
@@ -41,8 +41,9 @@ class Users {
                                 userPass, 
                                 userProfile
                                FROM users
-                               WHERE userID = ${req.params.id}
+                               WHERE userID = ${req.params.id};
                                `
+
            db.query(qry, (err, result)=>{
                     if(err) throw err
                     res.json({
@@ -54,23 +55,23 @@ class Users {
         }
     
 
-    async createUser(req, res) {
-       
-            let data = req.body
-            data.userPass = await hash(data.userPass, 8);
-            let user = {
+        async register(req, res){
+            const data = req.body;
+            data.userPass = await hash(data.userPass, 15);
+    
+            const user = {
                 emailAdd: data.emailAdd,
                 userPass: data.userPass
-            }
-            const qry = `INSERT INTO users SET ?;`;
-           db.query(qry, [data], (err)=>{
-            if(err) {
+            };
+            const query = `INSERT INTO users SET ?;`
+            db.query(query, [data], (err)=>{
+                if(err) throw err;
+                let token = createToken(user);
                 res.json({
                     status: res.statusCode,
-                    msg: 'Email Already exists'
-                })
-            }
-           })
+                    msg: 'You are registered',
+                });
+            });
         }
     
 

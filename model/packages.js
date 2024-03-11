@@ -33,7 +33,8 @@ class Packages{
             })
         })
     }
-    addPackage(req, res) {
+    // addPackage
+    async register(req, res) {
         const qry = `
         INSERT INTO packages
         SET ?;

@@ -29,7 +29,15 @@ app.use((req, res, next) => {
     res.header("Access-Control-Expose-Headers", "Authorization");
     next();
 });
-
+app.use(
+    express.static('./static'),
+    express.json(),
+    express.urlencoded({
+      extended: true,
+    }),
+    cookieParser(),
+    cors()
+  )
 // Routes
 app.use('/users', userRouter);
 app.use('/packages', packageRouter);
@@ -38,7 +46,7 @@ app.use('/packages', packageRouter);
 app.get('^/$|/Backend', (req, res) => {
     res.status(200).sendFile(path.join(__dirname, './static/index.html'));
 });
-
+app.use(errorHandling)
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
