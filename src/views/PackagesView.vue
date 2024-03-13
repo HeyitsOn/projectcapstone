@@ -12,7 +12,7 @@
       <div class="row gap-5 justify-content-center m-3" v-if="packages">
         <Card v-for="data in filteredPackages" :key="data.packID">
           <template #cardHeader>
-            <img :src="data.packUrl" class="car-img-top" alt="" height="200">
+            <img :src="data.packUrl" class="car-img-top" alt="" height="200" width = "200">
             <h4 class="card-title">{{ data.packName }}</h4>
           </template>
           <template #cardBody>
@@ -75,3 +75,8 @@ export default {
   }
 }
 </script>
+<style scoped>
+.container{
+  background-color: #cdb9a8;
+}
+</style>
