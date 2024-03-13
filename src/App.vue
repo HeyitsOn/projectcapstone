@@ -1,16 +1,19 @@
 <template>
 <NavComp/>
   <router-view/>
+  <FooterCamp/>
 </template>
 <script>
 import  NavComp from "./components/NavComp.vue";
+import FooterCamp  from "./components/FooterCamp.vue";
 export default {
   components: {
     NavComp,
+    FooterCamp,
   }
 }
 </script>
-<style >
+<style src  >
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

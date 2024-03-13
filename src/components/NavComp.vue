@@ -44,7 +44,7 @@
     padding: 10px 0 ;
   }
   #logo {
-    width: 100px; 
+    width: 50px; 
     margin-right:30px; 
   }
   .navbar-nav .nav-item {

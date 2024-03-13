@@ -1,19 +1,19 @@
 import { createStore } from 'vuex'
 import axios from 'axios'
-// import sweet from 'sweetalert'
-// import { useCookies } from 'vue3-cookies'
-// const {cookies} = useCookies()
-// import router from '@/router'
-// import AuthenticateUser from '@/service/AuthenticateUser'
-// const lifeURL = 'https://lifechoicesapp-dddy.onrender.com/'
+import sweet from 'sweetalert'
+import { useCookies } from 'vue3-cookies'
+const {cookies} = useCookies()
+import router from '@/router'
+import AuthenticateUser from '@/service/AuthenticateUser'
+const randUrl = 'https://projectcapstone.onrender.com'
 
 export default createStore({
   state: {
-    // users: null,
-    // user: null,
-    // Packages: null,
-    // SinglePackage: null
-  },
+  //   // users: null,
+  //   // user: null,
+  //   // Packages: null,
+  //   // SinglePackage: null
+  // },
   getters: {
   },
   mutations: {
@@ -33,7 +33,7 @@ export default createStore({
   actions: {
   //   async register(context, payload) {
   //     try{
-  //       let {msg} = (await axios.post(`${lifeURL}users/register`, payload)).data
+  //       let {msg} = (await axios.post(`${randUrl}users/register`, payload)).data
   //       if(msg) {
   //         context.dispatch('fetchUsers')
   //         sweet({
@@ -56,7 +56,7 @@ export default createStore({
   //   },
   //   async fetchUsers(context) {
   //     try{
-  //       let {results} = (await axios.get(`${lifeURL}users`)).data
+  //       let {results} = (await axios.get(`${randUrl}users`)).data
   //       if(results) {
   //         context.commit('setUsers', results)
   //       }
@@ -71,7 +71,7 @@ export default createStore({
   //   },
   //   async fetchUser(context, payload) {
   //     try{
-  //       let {result} = (await axios.get(`${lifeURL}users/${payload.id}`)).data
+  //       let {result} = (await axios.get(`${randUrl}users/${payload.id}`)).data
   //       if(result) {
   //         context.commit('setUser', result)
   //       }else {
@@ -93,7 +93,7 @@ export default createStore({
   //   },
   //   async updateUser(context, payload) {
   //     try{
-  //       let {msg} = await axios.patch(`${lifeURL}users/update/${payload.id}`)
+  //       let {msg} = await axios.patch(`${randUrl}users/update/${payload.id}`)
   //       if(msg) {
   //         context.dispatch('fetchUsers')
   //         sweet({
@@ -114,7 +114,7 @@ export default createStore({
   //   },
   //   async deleteUser(context, payload) {
   //     try{
-  //       let {msg} = await axios.delete(`${lifeURL}users/${payload.id}`)
+  //       let {msg} = await axios.delete(`${randUrl}users/${payload.id}`)
   //       if(msg) {
   //         context.dispatch('fetchUsers')
   //         sweet({
@@ -135,7 +135,7 @@ export default createStore({
   //   },
   //   async login(context, payload) {
   //     try{
-  //      const {msg, token, result} = (await axios.post(`${lifeURL}users/login`, payload)).data 
+  //      const {msg, token, result} = (await axios.post(`${randUrl}users/login`, payload)).data 
   //      if(result){
   //       context.commit('setUser', {msg, result})
   //       cookies.set('LegitUser', {
@@ -172,7 +172,7 @@ export default createStore({
   //   async fetchPackages(context) {
   //     try{
   //       let {results} = 
-  //       (await axios.get(`${lifeURL}Packages`)).data
+  //       (await axios.get(`${randUrl}Packages`)).data
   //       if(results) {
   //         context.commit('setPackages', results)
   //       }
@@ -187,7 +187,7 @@ export default createStore({
   //   },
   //   async fetchPackages(context, payload) {
   //     try{
-  //       let {result} = (await axios.get(`${lifeURL}Packages/${payload.id}`)).data
+  //       let {result} = (await axios.get(`${randUrl}Packages/${payload.id}`)).data
   //       if(result) {
   //         context.commit('setPackages', result)
   //       }else {

@@ -1,7 +1,15 @@
 <template>
   <div class="container">
-    <h2>Login</h2>
-    <form @submit.prevent="login">
+    <h2 v-if="isNewUser">Sign Up</h2>
+    <h2 v-else>Login</h2>
+    <form v-if="isNewUser" @submit.prevent="signup">
+      <label for="new-username">Username</label>
+      <input type="text" id="new-username" v-model="username" required>
+      <label for="new-password">Password</label>
+      <input type="password" id="new-password" v-model="password" required>
+      <button type="submit">Sign Up</button>
+    </form>
+    <form v-else @submit.prevent="login">
       <label for="username">Username</label>
       <input type="text" id="username" v-model="username" required>
       <label for="password">Password</label>
@@ -9,6 +17,7 @@
       <button type="submit">Login</button>
     </form>
     <p v-if="error" style="color: red;">{{ error }}</p>
+    <button @click="toggleForm">{{ isNewUser ? 'Switch to Login' : 'Switch to Sign Up' }}</button>
   </div>
 </template>
 
@@ -18,10 +27,21 @@ export default {
     return {
       username: '',
       password: '',
-      error: ''
+      error: '',
+      isNewUser: true
     };
   },
   methods: {
+    signup() {
+      if (this.username === '' || this.password === '') {
+        this.error = 'Please enter both username and password.';
+      } else {
+        alert('Signed up successfully!');
+        this.username = '';
+        this.password = '';
+        this.error = '';
+      }
+    },
     login() {
       if (this.username === '' || this.password === '') {
         this.error = 'Please enter both username and password.';
@@ -31,6 +51,12 @@ export default {
         this.password = '';
         this.error = '';
       }
+    },
+    toggleForm() {
+      this.isNewUser = !this.isNewUser;
+      this.error = '';
+      this.username = '';
+      this.password = '';
     }
   }
 }
@@ -40,7 +66,6 @@ export default {
 .container {
   margin-top: 10%;
   max-width: 360px;
-  /* margin: 10px; */
   padding: 20px;
   background: #514a4a;
   border-radius: 50px;

@@ -1,7 +1,7 @@
 <template>
   <section class="home">
     <div class="row">
-      <img src="https://i.pinimg.com/474x/50/1a/c5/501ac584797100e80ba9ac2ed3d025b3.jpg" class="overlay-image">
+      <img src="https://www.idoyall.com/wp-content/uploads/2018/05/biltmore_Woodward-and-Rick-Photographers.jpg" class="overlay-image">
       <h1 class="home-text">Snowlake Wedding Venue</h1>
     </div>
   </section>
@@ -38,11 +38,27 @@
 
   .overlay-image {
     position: absolute; 
-    top: 56%; 
+    top: 50%; 
     left: 50%; 
     transform: translate(-50%, -50%); 
     border-radius: 50% 50% 0 0;
-    width: 500px;
-    height: auto;
+    width: 700px;
+    height: 600px;
+   
+  }
+  @media (max-width: 768px) {
+    .home-text {
+      margin-top: 15%;
+    }
+
+    .overlay-image {
+      width: 90%;
+      max-width: none;
+      height: auto;
+    }
+  }
+  h1{
+    text-align: center;
+    color: aliceblue;
   }
 </style>
