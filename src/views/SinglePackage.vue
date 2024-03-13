@@ -6,14 +6,14 @@
       <div class="row">
           <Card v-if="product">
               <template #cardHeader>
-                  <h4 class="card-title">{{ package.packID }}</h4>
+                  <h4 class="card-title">{{ data.packID }}</h4>
               </template>
               <template #cardBody>
                     <div>
                         <img class="img-fluid" :src="product.ProdUrl" :alt="package.packName"/>
                     </div>
                   <p class="card-text text-dark bg-gradient bg-dark-subtle p-2">
-                     {{ package.packDescription }}
+                     {{ data.packDescription }}
                   </p>
                   
                   <!-- <p class="card-text text-dark bg-gradient bg-dark-subtle p-2">

@@ -10,22 +10,22 @@
         </div>
       </div>
       <div class="row gap-5 justify-content-center m-3" v-if="packages">
-        <Card v-for="packages in filteredPackages" :key="packages.packID">
+        <Card v-for="data in filteredPackages" :key="data.packID">
           <template #cardHeader>
-            <img :src="packages.packUrl" class="car-img-top" alt="" height="200">
-            <h4 class="card-title">{{ packages.packName }}</h4>
+            <img :src="data.packUrl" class="car-img-top" alt="" height="200">
+            <h4 class="card-title">{{ data.packName }}</h4>
           </template>
           <template #cardBody>
             <p class="card-text text-dark bg-gradient bg-dark-subtle p-2">
-              Description: {{ packages.packDescription }}
+              Description: {{ data.packDescription }}
             </p>
             <p class="card-text text-dark bg-gradient bg-dark-subtle p-2">
-              Availability: {{ packages.packAvailability }}
+              Availability: {{ data.packAvailability }}
             </p>
             <p class="card-text text-dark bg-gradient bg-dark-subtle p-2">
-              Amount: R{{ packages.packAmount }}
+              Amount: R{{ data.packAmount }}
             </p>
-            <router-link :to="{ name: 'package', params: { id: packages.packID }}">View More</router-link>
+            <router-link :to="{ name: 'SinglePackage', params: { id: data.packID }}">View More</router-link>
           </template>
         </Card>
       </div>
@@ -71,6 +71,7 @@ export default {
   },
   mounted() {
     this.$store.dispatch('fetchPackages');
+    console.log("packages: ", this.packages);
   }
 }
 </script>
