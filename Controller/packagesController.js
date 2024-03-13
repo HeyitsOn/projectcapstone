@@ -57,7 +57,7 @@ packageRouter.patch('/update/:id', bodyParser.json(), (req, res) => {
     }
 });
 
-// Delete a Package by ID
+// Delete a Package by 
 packageRouter.delete('/delete/:id', (req, res) => {
     try {
         packages.deletePackage(req, res);
