@@ -16,14 +16,14 @@
             <h4 class="card-title">{{ data.packName }}</h4>
           </template>
           <template #cardBody>
-            <p class="card-text text-dark bg-gradient bg-dark-subtle p-2">
+            <!-- <p class="card-text text-dark bg-gradient bg-dark-subtle p-2">
               Description: {{ data.packDescription }}
+            </p> -->
+            <p class="card-text text-dark bg-gradient bg-dark-subtle p-2">
+              Availability: {{ data.packavaiblity }}
             </p>
             <p class="card-text text-dark bg-gradient bg-dark-subtle p-2">
-              Availability: {{ data.packAvailability }}
-            </p>
-            <p class="card-text text-dark bg-gradient bg-dark-subtle p-2">
-              Amount: R{{ data.packAmount }}
+              Amount: R{{ data.packamount }}
             </p>
             <router-link :to="{ name: 'SinglePackage', params: { id: data.packID }}">View More</router-link>
           </template>

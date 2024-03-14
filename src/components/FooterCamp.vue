@@ -16,7 +16,7 @@
 footer {
    background-image: url(https://i.ibb.co/r40ZTHL/gg3.png);
    height: max-content;
-  color:#885B19; 
+  color:#198879; 
   padding: 20px;
   text-align: center;
 }

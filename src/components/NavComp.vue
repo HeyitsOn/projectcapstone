@@ -1,5 +1,5 @@
  <template>
-    <nav class="navbar navbar-expand-lg justify-content-start">
+    <nav class="navbar navbar-expand-lg justify-content-start" id="black-ops">
       <div class="container-fluid">
         <img src="https://i.ibb.co/4Tx2WSh/nlogo-removebg-preview.png" id="logo">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -26,6 +26,9 @@
             <li class="nav-item">
             <router-link to="/contact" class="nav-link">Contact</router-link>
             </li>
+            <li class="nav-item">
+            <router-link to="/contact" class="nav-link">Accomdetions</router-link>
+            </li>
           </ul>
         </div>
       </div>
@@ -40,9 +43,15 @@
   </script>
   <style scoped>
   nav {
-    background-color:#885B19;
+    background-color:#d1cec9;
     padding: 10px 0 ;
   }
+  #black-ops {
+  font-family: "Black Ops One", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+  
   #logo {
     width: 50px; 
     margin-right:30px; 
@@ -55,7 +64,7 @@
     
   }
   .navbar-nav .nav-link {
-    color: black; 
+    color: #198879 ; 
     font-size: 18px; 
     font-weight: bold;
     text-transform: uppercase;
@@ -67,6 +76,6 @@
     outline: none;
   }
   .navbar-toggler-icon {
-    background-color:#885B19;
+    background-color:#d1cec9;
   }
   </style> 

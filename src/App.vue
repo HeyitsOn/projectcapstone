@@ -15,7 +15,7 @@ export default {
 </script>
 <style src  >
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: r, ;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

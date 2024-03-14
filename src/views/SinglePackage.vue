@@ -4,16 +4,16 @@
           <h2 class="display-2">Package Details</h2>
       </div>
       <div class="row">
-          <Card v-if="product">
+          <Card v-if="package">
               <template #cardHeader>
-                  <h4 class="card-title">{{ data.packID }}</h4>
+                  <h4 class="card-title">{{ package.packID }}</h4>
               </template>
               <template #cardBody>
                     <div>
-                        <img class="img-fluid" :src="product.ProdUrl" :alt="package.packName"/>
+                        <img class="img-fluid" :src="package.ProdUrl" :alt="package.packName"/>
                     </div>
                   <p class="card-text text-dark bg-gradient bg-dark-subtle p-2">
-                     {{ data.packDescription }}
+                     {{ package.packDescription }}
                   </p>
                   
                   <!-- <p class="card-text text-dark bg-gradient bg-dark-subtle p-2">
@@ -32,12 +32,12 @@ import Card from '@/components/Card.vue';
           Card,
       },
       computed: {
-          product() {
+        package() {
               return this.$store.state.product
           }
       },
       mounted() {
-          this.$store.dispatch('fetchProduct', this.$route.params)
+          this.$store.dispatch('fetchPackage', this.$route.params)
       }
   }
 </script>
