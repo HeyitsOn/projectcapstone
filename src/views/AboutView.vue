@@ -15,7 +15,7 @@
     <div class="about-body">
       <div class="row justify-content-center">
         <div class="col-5">
-          <img src="https://www.essence.com/wp-content/uploads/2019/06/IMG_1833.jpg" width="400" alt="">
+          <img src="https://image.wedmegood.com/resized/450X/uploads/images/6fe1694e212147a7bcbd631e179d4690realwedding/5_Wedding_480.jpg" width="400" alt="">
           <h2>Vision</h2>
           <p>my vision is to make planning your dream castle wedding as easy and exciting as possible. I want to help you find the perfect venue, customize every detail, and ensure your special day is absolutely magical. My goal is to be your go-to resource for turning your fairy tale wedding dreams into reality, providing a simple and stress-free experience every step of the way.</p>
           <h2>Mission</h2>
@@ -34,8 +34,8 @@ h2{
   margin-right: 80%;
 }
 .img{
+  /* width:500px; */
   margin-top: 30px;
-  height: 5;
   border-radius: 50% 50% 0 0;
 }
 .about{

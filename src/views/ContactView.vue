@@ -16,7 +16,7 @@
       <div class="col-5 contact-body">
         <div class="justify-content-center">
           <div>
-            <img src="https://www.essence.com/wp-content/uploads/2019/06/IMG_1833.jpg" width="400" alt="">
+            <img src="https://image.wedmegood.com/resized/450X/uploads/images/6fe1694e212147a7bcbd631e179d4690realwedding/5_Wedding_480.jpg" width="400" alt="">
           </div>
         </div>
       </div>

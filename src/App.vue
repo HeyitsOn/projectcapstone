@@ -13,9 +13,9 @@ export default {
   }
 }
 </script>
-<style src  >
+<style src="../src/assets/CSS/style.css" >
 #app {
-  font-family: r, ;
+  font-family: 'Courier New', Courier, monospace;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
