@@ -3,13 +3,14 @@
   <div class="container">
     <div class="row">
       <h2 class="display-4">
-        <button class="btn btn-primary mr-2" @click="showUsers = true; showProducts = false"
+        <button class="btn btn-primary mr-2" @click="showUsers = true; showPackages = false"
                 style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">
           Users
         </button>
-        <button class="btn btn-primary mr-2" @click="showProducts = true; showUsers = false"
+        <button class="btn btn-primary mr-2" @click="showPackages = true; showUsers = false"
                 style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">
-          Products
+                Packages   
+
         </button>
       </h2>
     </div>
@@ -71,12 +72,12 @@
         </tbody>
       </table>
     </div>
-    <div class="row" v-show="showProducts && products">
+    <div class="row" v-show="showPackages && packages">
       <!-- Modal -->
-      <!-- <div class="btn-tdn mb-2 ">
-            <button class="btn btn-success edt-btn mr-6" data-bs-toggle="modal" data-bs-target="#addProductModal">Add
-                Product</button>
-        </div> -->
+      <div class="btn-tdn mb-2 ">
+            <button class="btn btn-success edt-btn mr-6" data-bs-toggle="modal" data-bs-target="#addPackageModal">Add
+              Package</button>
+        </div>
     </div>
   </div>
 </template>
@@ -85,7 +86,7 @@
     data() {
       return {
         showUsers: true,
-        showProducts: false,
+        showPackages: false,
         firstName: '' // Added empty string for v-model binding
       };
     },
@@ -98,13 +99,13 @@
       users() {
         return this.$store.state.users;
       },
-      products() {
-        return this.$store.state.products;
+      packages() {
+        return this.$store.state.packages;
       },
     },
     mounted() {
       this.$store.dispatch("fetchUsers");
-      this.$store.dispatch("fetchPackage");
+      this.$store.dispatch("fetchPackages");
     },
   };
 </script>
