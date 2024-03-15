@@ -5,7 +5,7 @@
       <h2 class="display-4">
         <button class="btn btn-primary mr-2" @click="showUsers = true; showPackages = false"
                 style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">
-          Users
+          Uses
         </button>
         <button class="btn btn-primary mr-2" @click="showPackages = true; showUsers = false"
                 style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">
