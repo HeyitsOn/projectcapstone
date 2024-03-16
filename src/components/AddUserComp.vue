@@ -1,29 +1,65 @@
 <template>
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            ...
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-          </div>
-        </div>
-      </div>
+  <div>
+    <div>
+      <h2>Register New User</h2>
+      <input v-model="newUser.firstName" placeholder="Enter First Name" />
+      <input v-model="newUser.lastName" placeholder="Enter Last Name" />
+      <input v-model="newUser.userAge" placeholder="Enter Age" type="number" />
+      <input v-model="newUser.gender" placeholder="Enter Gender" />
+      <input v-model="newUser.userRole" placeholder="Enter Role" />
+      <input v-model="newUser.emailAdd" placeholder="Enter Email" />
+      <input v-model="newUser.userPass" placeholder="Enter Password" type="password" />
+      <input v-model="newUser.profileUrl" placeholder="Enter Profile URL" />
+      <button @click="registerUser">Submit</button>
     </div>
-    </template>
-    
-    <script>
-        export default {
-            
-        }
-    </script>
-    
-    <style scoped>
-    
-    </style>
+  </div>
+</template>
+
+<script>
+import axios from "axios";
+
+export default {
+  data() {
+    return {
+      newUser: {
+        firstName: "",
+        lastName: "",
+        userAge: 0,
+        gender: "",
+        userRole: "",
+        emailAdd: "",
+        userPass: "",
+        profileUrl: "",
+      },
+    };
+  },
+  methods: {
+    async registerUser() {
+      try {
+        const response = await axios.post(
+          "https://projectcapstone.onrender.com/",
+          this.newUser
+        );
+        alert(response.data.msg);
+        this.$emit("userRegistered"); 
+        this.newUser = {
+          firstName: "",
+          lastName: "",
+          userAge: 0,
+          gender: "",
+          userRole: "",
+          emailAdd: "",
+          userPass: "",
+          profileUrl: "",
+        };
+      } catch (error) {
+        console.error("Error adding user:", error); 
+     }
+    },
+  },
+};
+</script>
+
+<style scoped>
+/* Your styles here */
+</style>
