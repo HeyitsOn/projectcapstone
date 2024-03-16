@@ -4,21 +4,15 @@
       <h1>Get IN TOUCH WITH US</h1>
     </div>        
     <div class="row">
-      <div class="col-4 contact-header">
-        <div class="justify-content-center">
-          <div class="about-content">
-            <p class="contact-info"><img src="https://i.ibb.co/McGLXQY/landline.png" class="small-image">021 245 8874</p>
-            <p class="contact-info"><img src="https://i.ibb.co/FKqgRhN/arroba.png" class="small-image">info@Snowlakebooking</p>
-            <p class="contact-info"><img src="https://i.ibb.co/sK6LpK7/broswer.png" class="small-image">www.Snowlake.com</p>
-          </div>
+      <div class="col-4 contact-header justify-content-center"> <!-- Added justify-content-center class here -->
+        <div class="about-content">
+          <p class="contact-info"><img src="https://i.ibb.co/McGLXQY/landline.png" class="small-image">021 245 8874</p>
+          <p class="contact-info"><img src="https://i.ibb.co/FKqgRhN/arroba.png" class="small-image">info@Snowlakebooking</p>
+          <p class="contact-info"><img src="https://i.ibb.co/sK6LpK7/broswer.png" class="small-image">www.Snowlake.com</p>
         </div>
       </div>
-      <div class="col-5 contact-body">
-        <div class="justify-content-center">
-          <div>
-            <img src="https://image.wedmegood.com/resized/450X/uploads/images/6fe1694e212147a7bcbd631e179d4690realwedding/5_Wedding_480.jpg" width="400" alt="">
-          </div>
-        </div>
+      <div class="col-5 contact-body justify-content-center"> <!-- Added justify-content-center class here -->
+        <!-- <img src="https://media-api.xogrp.com/images/28f240e9-d113-49df-94de-0a304ca47724~rs_1536.666" width="400" alt=""> -->
       </div>
     </div>
   </div>
@@ -29,9 +23,20 @@
   max-width: 50px; /* Adjust the size as needed */
 }
 
-.contact-info {
-  display: flex;
-  align-items: center;
-  margin-left: auto;
+.contact-body{
+  background-image: url(https://media-api.xogrp.com/images/28f240e9-d113-49df-94de-0a304ca47724~rs_1536.666);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+  margin-top: 10%;
+  max-width: 360px;
+  padding: 20px;
+  border-radius: 50px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);}
+
+.contact-header{
+  padding-top: 10%;
 }
+
 </style>

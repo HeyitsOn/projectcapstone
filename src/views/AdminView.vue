@@ -108,7 +108,7 @@
   };
 </script>
 <style scoped>
-  body {
+  .table{
     background-color: #918E8E;
   }
   .edt-btn {

@@ -1,7 +1,7 @@
 <template>
   <section class="home">
     <div class="row">
-      <img src="https://www.idoyall.com/wp-content/uploads/2018/05/biltmore_Woodward-and-Rick-Photographers.jpg" class="overlay-image">
+      <img src="https://media-api.xogrp.com/images/28f240e9-d113-49df-94de-0a304ca47724~rs_1536.666" class="overlay-image">
       <h1 class="home-text">Snowlake Wedding Venue</h1>
     </div>
   </section>

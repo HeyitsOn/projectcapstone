@@ -26,7 +26,7 @@ export default {
   position: fixed;
   width: 100%;
   height: 100%;
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(190, 178, 178, 0.9);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -43,7 +43,7 @@ export default {
   content: "";
   width: 20px;
   height: 20px;
-  background-color: yellow;
+  background-color: rgb(255, 0, 25);
 }
 .loader-spinner::after {
   content: "";
@@ -51,6 +51,7 @@ export default {
   height: 20px;
   background-color: yellow;
 }
+
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }

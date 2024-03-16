@@ -4,21 +4,20 @@
           <h2 class="display-2">Package Details</h2>
       </div>
       <div class="row">
-          <Card v-if="package">
+          <Card v-if="Singlepackage">
               <template #cardHeader>
-                  <h4 class="card-title">{{ package.packID }}</h4>
+                  <h4 class="card-title">{{ SinglePackage.packID }}</h4>
               </template>
               <template #cardBody>
                     <div>
-                        <img class="img-fluid" :src="package.ProdUrl" :alt="package.packName"/>
+                        <img class="img-fluid" :src="package.packUrl" :alt="package.packName"/>
                     </div>
                   <p class="card-text text-dark bg-gradient bg-dark-subtle p-2">
                      {{ package.packDescription }}
                   </p>
-                  
-                  <!-- <p class="card-text text-dark bg-gradient bg-dark-subtle p-2">
+                  <p class="card-text text-dark bg-gradient bg-dark-subtle p-2">
                       Amount: R{{ product.prodAmount }}
-                  </p> -->
+                  </p>
               </template>
           </Card>
       </div>

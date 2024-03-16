@@ -77,6 +77,12 @@ export default {
 </script>
 <style scoped>
 .container{
-  background-color: #cdb9a8;
+  background-image: url(https://lovelyweddingskc.com/wp-content/uploads/sites/27677/2020/07/Wildcliff-Outdoor-Wedding-Venue-KC-1152x1536.jpg);
+  background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    position: relative; 
+  /* background-color: #cdb9a8; */
 }
 </style>

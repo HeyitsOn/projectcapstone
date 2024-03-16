@@ -1,15 +1,15 @@
 <template>
   <div class="container">
-    <h2 v-if="isNewUser">Sign Up</h2>
+    <h2  v-if="isNewUser">Sign Up</h2>
     <h2 v-else>Login</h2>
-    <form v-if="isNewUser" @submit.prevent="signup">
+    <form class= "form" v-if="isNewUser" @submit.prevent="signup">
       <label for="new-username">Username</label>
       <input type="text" id="new-username" v-model="username" required>
       <label for="new-password">Password</label>
       <input type="password" id="new-password" v-model="password" required>
       <button type="submit">Sign Up</button>
     </form>
-    <form v-else @submit.prevent="login">
+    <form  class= "form"v-else @submit.prevent="login">
       <label for="username">Username</label>
       <input type="text" id="username" v-model="username" required>
       <label for="password">Password</label>
@@ -17,7 +17,7 @@
       <button type="submit">Login</button>
     </form>
     <p v-if="error" style="color: red;">{{ error }}</p>
-    <button @click="toggleForm">{{ isNewUser ? 'Switch to Login' : 'Switch to Sign Up' }}</button>
+    <button class= 'button' @click="toggleForm">{{ isNewUser ? 'Switch to Login' : 'Switch to Sign Up' }}</button>
   </div>
 </template>
 
@@ -63,13 +63,30 @@ export default {
 </script>
 
 <style scoped>
-.container {
+.form {
+  margin-left: 40%;
   margin-top: 10%;
   max-width: 360px;
   padding: 20px;
-  background: #514a4a;
   border-radius: 50px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  color: white;
+  
+}
+.button{
+  margin-left: 40%;
+  /* margin-top: 10%; */
+  max-width: 360px;
+  /* padding: 20px; */
+  border-radius: 50px;
+}
+.container {
+  background-image: url(https://media-api.xogrp.com/images/28f240e9-d113-49df-94de-0a304ca47724~rs_1536.666);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+  ;
+  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
 }
 input[type="text"],
 input[type="password"] {
@@ -80,6 +97,7 @@ input[type="password"] {
   border: 1px solid #ccc;
   border-radius: 8px;
   box-sizing: border-box;
+  color: black;
 }
 button {
   background-color: #885B19;
