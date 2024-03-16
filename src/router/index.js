@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import AboutView from '../views/AboutView.vue'
 import PackagesView from '../views/PackagesView.vue'
-import SinglePackage from '../components/SinglePackage.vue'
+import SinglePackage from '../views/SinglePackage.vue'
 import AdminView from '../views/AdminView.vue'
 import ContactView from '../views/ContactView.vue'
 import LoginView from '@/views/LoginView.vue'
@@ -25,7 +25,7 @@ const routes = [
   {
     path: '/SinglePackage/:id',
     name: 'SinglePackage',
-    component: () => import( '../components/SinglePackage.vue')
+    component: () => import( '../views/SinglePackage.vue')
   },
   {
     path: '/Admin',

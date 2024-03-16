@@ -5,7 +5,7 @@
       <input v-model="newUser.firstName" placeholder="Enter First Name" />
       <input v-model="newUser.lastName" placeholder="Enter Last Name" />
       <input v-model="newUser.userAge" placeholder="Enter Age" type="number" />
-      <input v-model="newUser.gender" placeholder="Enter Gender" />
+      <input v-model="newUser.gender" placeholder="Enter gender" />
       <input v-model="newUser.userRole" placeholder="Enter Role" />
       <input v-model="newUser.emailAdd" placeholder="Enter Email" />
       <input v-model="newUser.userPass" placeholder="Enter Password" type="password" />

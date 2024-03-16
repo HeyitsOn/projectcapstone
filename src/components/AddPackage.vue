@@ -35,25 +35,25 @@
           Category: "",
           prodUrl: "",
         };
-        this.fetchProducts();
+        this.fetchPackages();
       } catch (error) {
         console.error("Error adding product:", error);
       }
     },
       resetForm() {
         // Reset the form after successful add
-        this.newProduct.prodName = "";
-        this.newProduct.quantity = 0;
-        this.newProduct.amount = 0;
-        this.newProduct.Category = "";
-        this.newProduct.prodUrl = "";
+        this.newPackage.prodName = "";
+        this.newPackage.quantity = 0;
+        this.newPackage.amount = 0;
+        this.newPackage.Category = "";
+        this.newPackage.prodUrl = "";
       },
       populateForm(product) {
-      this.newProduct.prodName = product.prodName;
-      this.newProduct.quantity = product.quantity;
-      this.newProduct.amount = product.amount;
-      this.newProduct.Category = product.Category;
-      this.newProduct.prodUrl = product.prodUrl;
+      this.newPackage.prodName = product.prodName;
+      this.newPackage.quantity = product.quantity;
+      this.newPackage.amount = product.amount;
+      this.newPackage.Category = product.Category;
+      this.newPackage.prodUrl = product.prodUrl;
     },
     },
   };

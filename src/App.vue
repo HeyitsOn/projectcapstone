@@ -1,15 +1,24 @@
 <template>
-<NavComp/>
-  <router-view/>
-  <FooterCamp/>
+<navComp/>
+<!-- <AddPackage/> -->
+<SpinnerComp/>
+<AddUserComp/>
+<router-view/>
+<FooterCamp/>
 </template>
 <script>
 import  NavComp from "./components/NavComp.vue";
 import FooterCamp  from "./components/FooterCamp.vue";
+import SpinnerComp from "./components/SpinnerComp.vue";
+import AddUserComp from "./components/AddUserComp.vue";
+// import AddPackage from "./components/AddPackage.vue";
 export default {
   components: {
     NavComp,
     FooterCamp,
+    SpinnerComp,
+    AddUserComp,
+  // AddPackage,
   }
 }
 </script>

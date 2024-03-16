@@ -7,8 +7,6 @@
       <input type="text" id="new-username" v-model="username" required>
       <label for="new-password">Password</label>
       <input type="password" id="new-password" v-model="password" required>
-      <label for="new-password">Password</label>
-      <input type="password" id="new-password" v-model="password" required>
       <button type="submit">Sign Up</button>
     </form>
     <form v-else @submit.prevent="login">
