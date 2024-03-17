@@ -16,7 +16,7 @@
       <input type="email" id="email" v-model="email" required>
       <label for="dob">Date of Birth</label>
       <input type="date" id="dob" v-model="dob" required>
-      <button type="submit">Sign Up</button>
+      <button class= "butt" type="submit">Sign Up</button>
     </form>
     <!-- Login form -->
     <form class="form" v-else-if="!isNewUser && !isLoading" @submit.prevent="login">
@@ -24,7 +24,7 @@
       <input type="text" id="username" v-model="username" required>
       <label for="password">Password</label>
       <input type="password" id="password" v-model="password" required>
-      <button type="submit">Login</button>
+      <button class="butt" type="submit">Login</button>
     </form>
     <!-- Error message -->
     <p v-if="error" style="color: red;">{{ error }}</p>
@@ -98,6 +98,12 @@ export default {
 </script>
 
 <style scoped>
+h2{
+  margin-left: 50%;
+  color:white;
+  /* margin-top: 20px; */
+
+}
 /* Loader animation */
 .loader {
   border: 16px solid #f3f3f3;
@@ -136,6 +142,7 @@ export default {
   background-size: cover;
   background-position: center;
   height: 100vh;
+  
 }
 
 .form {
