@@ -24,19 +24,26 @@
 }
 
 .contact-body{
-  background-image: url(https://media-api.xogrp.com/images/28f240e9-d113-49df-94de-0a304ca47724~rs_1536.666);
+  background-image: url(https://media-api.xogrp.com/images/50deacb7-4ea3-4dd1-8997-b9603798f8bf~rs_770.576);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    height: 100vh;
-  margin-top: 10%;
+    /* height: 100vh; */
+    margin-left: 20%;
+  margin-top: 20%;
   max-width: 360px;
   padding: 20px;
   border-radius: 50px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);}
 
 .contact-header{
-  padding-top: 10%;
+  margin-top: 20%;
 }
+p{
+  margin-left: 50%;
+}
+h1{  
+  margin-left: 30%;
 
+}
 </style>
