@@ -26,6 +26,9 @@
             <li class="nav-item">
             <router-link to="/contact" class="nav-link">Contact</router-link>
             </li>
+            <li class="nav-item">
+            <router-link to="/Bookings" class="nav-link">Bookings</router-link>
+            </li>
             <!-- <li class="nav-item">
             <router-link to="/Acommodation" class="nav-link">Accomdation</router-link>
             </li> -->

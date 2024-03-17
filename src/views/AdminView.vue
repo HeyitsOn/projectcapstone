@@ -99,7 +99,6 @@
                         <tr>
                             <th>Package ID</th>
                             <th>Package Name</th>
-                            <th>Package Description</th>
                             <th>Package avaiblity</th>
                             <th>Package Amount</th>
                             <th>Action</th>
@@ -109,7 +108,6 @@
                         <tr v-for="Package in packages" :key="Package.packID">
                             <td>{{ Package.packID }}</td>
                             <td>{{ Package.packName }}</td>
-                            <td>{{ Package.packDescription }}</td>
                             <td>{{ Package.packavaiblity }}</td>
                             <td>R {{ Package.packamount }}</td>
                             <td class="d-flex justify-content-between">

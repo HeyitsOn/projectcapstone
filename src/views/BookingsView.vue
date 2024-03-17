@@ -42,64 +42,74 @@
   </template>
   
   <script>
-export default {
-  data() {
-    return {
-      newBooking: {
-        customer_name: '',
-        customer_email: '',
-        event_date: '',
-        event_type: '',
-        guest_count: 0
-      },
-      bookings: []
-    };
-  },
-  mounted() {
-    this.fetchBookings();
-  },
-  methods: {
-    async fetchBookings() {
-      try {
-        const response = await fetch('/api/bookings'); // Matches backend route: GET '/'
-        const data = await response.json();
-        this.bookings = data;
-      } catch (error) {
-        console.error('Error fetching bookings:', error);
-      }
-    },
-    async submitBooking() {
-      try {
-        const response = await fetch('/api/bookings/addBooking', { // Matches backend route: POST '/addBooking'
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(this.newBooking)
-        });
-        const data = await response.json();
-        this.bookings.push(data);
-        this.newBooking = {
+  export default {
+    data() {
+      return {
+        newBooking: {
           customer_name: '',
           customer_email: '',
           event_date: '',
           event_type: '',
           guest_count: 0
-        };
-      } catch (error) {
-        console.error('Error submitting booking:', error);
-      }
+        },
+        bookings: []
+      };
     },
-    async deleteBooking(bookingId) {
-      try {
-        await fetch(`/api/bookings/delete/${bookingId}`, { // Matches backend route: DELETE '/delete/:id'
-          method: 'DELETE'
-        });
-        this.bookings = this.bookings.filter(booking => booking.booking_id !== bookingId);
-      } catch (error) {
-        console.error('Error deleting booking:', error);
+    mounted() {
+      this.fetchBookings();
+    },
+    methods: {
+      async fetchBookings() {
+        try {
+          const response = await fetch('/api/bookings');
+          if (!response.ok) {
+            throw new Error('Failed to fetch bookings');
+          }
+          const data = await response.json();
+          this.bookings = data.results;
+        } catch (error) {
+          console.error('Error fetching bookings:', error);
+        }
+      },
+      async submitBooking() {
+        try {
+          const response = await fetch('/api/bookings/addBooking', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(this.newBooking)
+          });
+          if (!response.ok) {
+            throw new Error('Failed to add booking');
+          }
+          const data = await response.json();
+          this.bookings.push(data);
+          this.newBooking = {
+            customer_name: '',
+            customer_email: '',
+            event_date: '',
+            event_type: '',
+            guest_count: 0
+          };
+        } catch (error) {
+          console.error('Error submitting booking:', error);
+        }
+      },
+      async deleteBooking(bookingId) {
+        try {
+          const response = await fetch(`/api/bookings/delete/${bookingId}`, {
+            method: 'DELETE'
+          });
+          if (!response.ok) {
+            throw new Error('Failed to delete booking');
+          }
+          this.bookings = this.bookings.filter(booking => booking.booking_id !== bookingId);
+        } catch (error) {
+          console.error('Error deleting booking:', error);
+        }
       }
     }
-  }
-};
-</script>
+  };
+  </script>
+  
