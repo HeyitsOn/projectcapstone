@@ -14,19 +14,21 @@ export default createStore({
     packages: null,
     singlePackage: null,
   },
-  getters: {},
+  getters: {
+
+  },
   mutations: {
     setUsers(state, value) {
-      state.users = value;
+      state.users = value
     },
     setUser(state, value) {
-      state.user = value;
+      state.user = value
     },
     setPackages(state, value) {
-      state.packages = value;
+      state.packages = value
     },
-    setPackages(state, value) {
-      state.packages = value;
+    setSinglePackage(state, value) {
+      state.singlePackage = value
     },
   },
   actions: {
@@ -43,7 +45,7 @@ export default createStore({
             timer: 2000,
           });
 
-          router.push({ name: "login" });
+          router.push({ name: "login" })
         }
       } catch (e) {
         sweet({
@@ -80,37 +82,37 @@ export default createStore({
             title: "Retrieving a single user",
             text: "User was not found",
             icon: "info",
-            timer: 2000,
-          });
+            timer: 2000
+          })
         }
       } catch (e) {
         sweet({
           title: "Error",
           text: "A user was not found.",
           icon: "error",
-          timer: 2000,
-        });
+          timer: 2000
+        })
       }
     },
     async updateUser(context, payload) {
       try {
-        let { msg } = await axios.patch(`${randUrl}users/update/${payload.id}`);
+        let { msg } = await axios.patch(`${randUrl}users/update/${payload.id}`)
         if (msg) {
-          context.dispatch("fetchUsers");
+          context.dispatch("fetchUsers")
           sweet({
             title: "Update user",
             text: msg,
             icon: "success",
-            timer: 2000,
-          });
+            timer: 2000
+          })
         }
       } catch (e) {
         sweet({
           title: "Error",
           text: "An error occurred when updating a user.",
           icon: "success",
-          timer: 2000,
-        });
+          timer: 2000
+        })
       }
     },
     async deleteUser(context, payload) {
@@ -122,7 +124,7 @@ export default createStore({
             title: "Delete user",
             text: msg,
             icon: "success",
-            timer: 2000,
+            timer: 2000
           });
         }
       } catch (e) {
@@ -168,8 +170,8 @@ export default createStore({
           title: "Error",
           text: "Failed to login.",
           icon: "error",
-          timer: 2000,
-        });
+          timer: 2000
+        })
       }
     },
     async fetchPackages(context) {
@@ -183,33 +185,33 @@ export default createStore({
           title: "Error",
           text: "An error occurred when retrieving Packages.",
           icon: "error",
-          timer: 2000,
-        });
+          timer: 2000
+        })
       }
     },
     async fetchPackage(context, payload) {
       try {
-        let { result } = (await axios.get(`${randUrl}Packages/${payload.id}`))
+        let { result } = (await axios.get(`${randUrl}packages/${payload.id}`))
           .data;
         if (result) {
-          context.commit("setPackages", result);
+          context.commit("setSinglePackage", result)
         } else {
           sweet({
-            title: "Retrieving a single Packages",
-            text: "Packages was not found",
+            title: "Retrieving a single Package",
+            text: "Package was not found",
             icon: "info",
-            timer: 2000,
-          });
+            timer: 2000
+          })
         }
       } catch (e) {
         sweet({
           title: "Error",
-          text: "A Packages was not found.",
+          text: "A Package was not found.",
           icon: "error",
           timer: 2000,
-        });
+        })
       }
-    },
+    }
   },
   modules: {},
 });

@@ -1,47 +1,52 @@
 <template>
-    <div class="container">
-      <div class="row">
-        <h2 class="display-2">Package Details</h2>
-      </div>
-      <div class="row">
-        <Card v-if="SinglePackage">
-          <template v-slot:cardHeader>
-            <h4 class="card-title">{{ SinglePackage.packName }}</h4>
-          </template>
-          <template v-slot:cardBody>
-            <div>
-              <img class="img-fluid" :src="SinglePackage.packUrl" :alt="SinglePackage.packName"/>
-            </div>
-            <p class="card-text text-dark bg-gradient bg-dark-subtle p-2">
-              {{ SinglePackage.packDescription }}
-            </p>
-            <p class="card-text text-dark bg-gradient bg-dark-subtle p-2">
-              Amount: R{{ SinglePackage.packAmount }} <!-- Fixed variable name -->
-            </p>
-          </template>
-        </Card>
-      </div>
+  <div class="container">
+    <div class="row">
+      <h2 class="display-2">Package Details</h2>
     </div>
-  </template>
-  
-  <script>
-  import Card from '@/components/Card.vue';
-  export default {
-    components: {
-      Card,
+    <div class="row">
+      <Card v-if="package">
+        <template v-slot:cardHeader>
+          <h4 class="card-title">{{ package.packName }}</h4>
+        </template>
+        <template v-slot:cardBody>
+          <div>
+            <img class="img-fluid" :src="package.packUrl" :alt="package.packName"/>
+          </div>
+          <p class="card-text text-dark bg-gradient bg-dark-subtle p-2">
+            {{ package.packDescription }}
+          </p>
+          <p class="card-text text-dark bg-gradient bg-dark-subtle p-2">
+            {{ package.packavaiblity }}
+          </p>
+          <p class="card-text text-dark bg-gradient bg-dark-subtle p-2">
+            Amount: R{{ package.packamount }} <!-- Fixed variable name -->
+          </p>
+        </template>
+      </Card>
+    </div>
+  </div>
+</template>
+
+<script>
+import Card from '@/components/Card.vue';
+export default {
+  components: {
+    Card,
+  },
+  computed: {
+    package() {
+      return this.$store.state.singlePackage
     },
-    computed: {
-      SinglePackage() {
-        return this.$store.state.SinglePackage;
-      }
-    },
-    mounted() {
-      this.$store.dispatch('fetchSinglePackage', this.$route.params);
-    }
+  },
+  mounted() {
+    this.$store.dispatch('fetchPackage', this.$route.params)
+    // console.log('On mounted SinglePackage:',this.SinglePackage);
+    // console.log('On mounted:',this.$route.params);
+
   }
-  </script>
-  
-  <style scoped>
-  
-  </style>
-  
+}
+</script>
+
+<style scoped>
+
+</style>
