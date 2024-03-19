@@ -13,6 +13,9 @@ export default createStore({
     user: null,
     packages: null,
     singlePackage: null,
+    bookings: null,
+    booking:null,
+
   },
   getters: {
 
@@ -30,6 +33,12 @@ export default createStore({
     setSinglePackage(state, value) {
       state.singlePackage = value
     },
+    setBookings(state,value){
+      state.bookings =value
+    },
+    setBooking(state, value){
+      state.Booking = value
+    }
   },
   actions: {
     async register(context, payload) {
@@ -213,5 +222,91 @@ export default createStore({
       }
     }
   },
+  async fetchWeddingBookings(context) {
+    try {
+      let { results } = (await axios.get(`${randUrl}weddingBooking`)).data;
+      if (results) {
+        context.commit("setBookings", results.data);
+        return { success: true, data: results.data }; 
+      }
+    } catch (e) {
+      sweet({
+        title: "Error",
+        text: "An error occurred when retrieving wedding bookings.",
+        icon: "error",
+        timer: 2000,
+      });
+      return { success: false, error: e };
+    }
+  },
+
+ 
+
+  async createWeddingBooking(context, payload) {
+    try {
+      let { msg } = await axios.post(`${randUrl}weddingBooking/create`, payload);
+      if (msg) {
+        context.dispatch("fetchWeddingBookings");
+        sweet({
+          title: "Booking Created",
+          text: msg,
+          icon: "success",
+          timer: 2000,
+        });
+      }
+    } catch (e) {
+      sweet({
+        title: "Error",
+        text: "An error occurred when creating a wedding booking.",
+        icon: "error",
+        timer: 2000,
+      });
+    }
+  },
+
+  async updateBooking(context, payload) {
+    try {
+      let { msg } = await axios.patch(`${randUrl}weddingBooking/update/${payload.id}`, payload.data);
+      if (msg) {
+        context.dispatch("fetchweddingBooking");
+        sweet({
+          title: "Booking Updated",
+          text: msg,
+          icon: "success",
+          timer: 2000,
+        });
+      }
+    } catch (e) {
+      sweet({
+        title: "Error",
+        text: "An error occurred when updating a booking.",
+        icon: "error",
+        timer: 2000,
+      });
+    }
+  },
+
+  async deleteBooking(context, payload) {
+    try {
+      let { msg } = await axios.delete(`${randUrl}bookings/${payload.id}`);
+      if (msg) {
+        context.dispatch("fetchBookings");
+        sweet({
+          title: "Booking Deleted",
+          text: msg,
+          icon: "success",
+          timer: 2000,
+        });
+      }
+    } catch (e) {
+      sweet({
+        title: "Error",
+        text: "An error occurred when deleting a booking.",
+        icon: "error",
+        timer: 2000,
+      });
+    }
+  },
+
   modules: {},
 });

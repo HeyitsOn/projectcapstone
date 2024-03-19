@@ -1,12 +1,9 @@
 <template>
   <div class="container">
     <div class="row">
-      <h2 class="display-4">
-        <button class="btn btn-primary" @click="showBookings = true; showUsers = false; showPackages = false">Bookings</button>
-      </h2>
+
     </div>
-    <div class="row" v-show="showBookings && bookings">
-      <!-- Bookings table code here -->
+    <div class="row">
       <div class="card">
         <div class="card-body">
           <table class="table table-bordered">
@@ -26,7 +23,7 @@
                 <td>{{ booking.event_type }}</td>
                 <td>{{ booking.guest_count }}</td>
                 <td>
-                  <button class="btn btn-danger" @click="deleteBooking(booking.booking_id)">Delete</button>
+                  <button class="btn btn-danger" @click="deleteWeddingBooking(booking.booking_id)">Delete</button>
                 </td>
               </tr>
             </tbody>
@@ -41,39 +38,45 @@
 export default {
   data() {
     return {
-      showBookings: true,
-      bookings: []
+      showWeddingBookings: true,
+      bookings: [],
     };
   },
-  mounted() {
-    this.fetchBookings();
-  },
   methods: {
-    async fetchBookings() {
+    async fetchWeddingBookings() {
       try {
-        const response = await fetch('/api/bookings');
-        if (!response.ok) {
-          throw new Error('Failed to fetch bookings');
-        }
-        const data = await response.json();
-        this.bookings = data.results;
+        const response = await this.$store.dispatch("fetchWeddingBookings");
+        this.bookings = response.data.results;
       } catch (error) {
-        console.error('Error fetching bookings:', error);
+        console.error("Error fetching wedding bookings:", error);
       }
     },
-    async deleteBooking(bookingId) {
+
+    async deleteWeddingBooking(bookingId) {
       try {
-        const response = await fetch(`/api/bookings/delete/${bookingId}`, {
-          method: 'DELETE'
-        });
-        if (!response.ok) {
-          throw new Error('Failed to delete booking');
+        const response = await this.$store.dispatch('deleteBooking');
+        
+        if (response.data.msg) {
+          this.fetchWeddingBookings();
+          sweet({
+            title: "Success",
+            text: response.data.msg,
+            icon: "success",
+            timer: 2000,
+          });
         }
-        this.bookings = this.bookings.filter(booking => booking.booking_id !== bookingId);
       } catch (error) {
-        console.error('Error deleting booking:', error);
+        sweet({
+          title: "Error",
+          text: "An error occurred when deleting the wedding booking.",
+          icon: "error",
+          timer: 2000,
+        });
       }
-    }
-  }
+    },
+  },
+  mounted() {
+    this.fetchWeddingBookings;
+  },
 };
 </script>

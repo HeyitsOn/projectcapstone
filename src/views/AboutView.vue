@@ -9,7 +9,6 @@
         <div class="col-8 about-content">
           <P>
             This project, Snowlake, was born out of a deep understanding of the challenges and aspirations that couples face when planning their dream wedding and would like to prevent the same thing to appen to me when looking for a wedding venue. It was created by a passionate individual who recognized the need for a streamlined and personalized solution for couples seeking a castle wedding experience.
-  
           </P>
         </div>
       </div>
@@ -31,9 +30,9 @@
   </div>
   </template>
   <style scoped>
-  h2{
+  /* h2{
     margin-right: 80%;
-  }
+  } */
   .img{
     /* width:500px; */
     margin-top: 30px;
