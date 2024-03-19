@@ -12,10 +12,6 @@ import { errorHandling } from './middleware/ErrorHandling.js';
 
 const port = process.env.PORT || 5501;
 const app = express();
-app.use(cors({
-  origin: " http://localhost:8080",
-  credentials: true
-}));
 app.use(express.static('./static'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
