@@ -21,7 +21,7 @@ BookingRouter.get('/', async (req, res) => {
 // Fetch a specific booking by ID
 BookingRouter.get('/:id', async (req, res) => {
     try {
-         weddingBooking.fetchBooking(req.params.id);  // Updated to use fetchBooking method
+         weddingBooking.fetchBooking(req, res);  // Updated to use fetchBooking method
         // res.json(booking);
     }catch (err) {
         res.json({
