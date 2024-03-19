@@ -226,8 +226,14 @@ export default createStore({
     try {
       let { results } = (await axios.get(`${randUrl}weddingBooking`)).data;
       if (results) {
-        context.commit("setBookings", results.data);
-        return { success: true, data: results.data }; 
+        context.commit("setBookings", results);
+      }else {
+        sweet({
+          title: "Error",
+          text: "No data was retrieved",
+          icon: "error",
+          timer: 2000,
+        });
       }
     } catch (e) {
       sweet({
