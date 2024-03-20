@@ -48,5 +48,8 @@ export default {
 </script>
 
 <style scoped>
+.card-text{
+  width: 100%;
+}
 
 </style>

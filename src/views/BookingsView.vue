@@ -42,41 +42,14 @@ export default {
       bookings: [],
     };
   },
-  methods: {
-    async fetchWeddingBookings() {
-      try {
-        const response = await this.$store.dispatch("fetchWeddingBookings");
-        this.bookings = response.data.results;
-      } catch (error) {
-        console.error("Error fetching wedding bookings:", error);
-      }
+    methods() {
+    
     },
-
-    async deleteWeddingBooking(bookingId) {
-  try {
-    const response = await this.$store.dispatch('deleteBooking', bookingId);
-        
-        if (response.data.msg) {
-          this.fetchWeddingBookings();
-          sweet({
-            title: "Success",
-            text: response.data.msg,
-            icon: "success",
-            timer: 2000,
-          });
-        }
-      } catch (error) {
-        sweet({
-          title: "Error",
-          text: "An error occurred when deleting the wedding booking.",
-          icon: "error",
-          timer: 2000,
-        });
-      }
-    },
-  },
+    
   mounted() {
-  this.fetchWeddingBookings(); // Add parentheses to call the function
-},
+this.$store.dispatch('fetchWeddingBookings')
+// console.log("weddingBookings: ", this.weddingBookings);
+
+  }
 };
 </script>
