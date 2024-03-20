@@ -76,7 +76,7 @@ export default {
     },
   },
   mounted() {
-    this.fetchWeddingBookings;
+    this.fetchWeddingBooking;
   },
 };
 </script>
