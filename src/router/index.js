@@ -31,6 +31,7 @@ const routes = [
     path: '/Admin',
     name: 'Admin',
     component: () => import( '../views/AdminView.vue')
+    
   },
   {
     path: '/contact',

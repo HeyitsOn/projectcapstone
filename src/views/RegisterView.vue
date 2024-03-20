@@ -59,6 +59,7 @@
   </template>
   <script>
   import axios from 'axios';
+import Swal from 'sweetalert2';
   export default {
     data() {
       return {
@@ -92,6 +93,12 @@
             userPass: this.userPass,
             userProfile: this.userProfile,
           });
+          Swal.fire({
+          icon: 'success',
+          title: 'Registration Successful!',
+          text: 'You have successfully registered.',
+          footer: `Your token is: ${token}` // Adjust this line based on where your token is stored
+        });
           const token = response.data.token;
           document.cookie = `token=${token}; path=/`;
           alert('Registration successful!');

@@ -36,6 +36,7 @@
 
 <script>
 export default {
+  name: 'BookingsView',
   data() {
     return {
       showWeddingBookings: true,
@@ -47,7 +48,7 @@ export default {
     },
     
   mounted() {
-this.$store.dispatch('fetchWeddingBookings')
+this.$store.dispatch('fetchBooking');
 // console.log("weddingBookings: ", this.weddingBookings);
 
   }

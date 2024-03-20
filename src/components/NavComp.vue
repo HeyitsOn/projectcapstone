@@ -84,3 +84,39 @@ nav {
   background-color: #D1CEC9;
 }
 </style>
+<style scoped>
+nav {
+  background-color: #D1CEC9;
+  padding: 10px 0 ;
+}
+#black-ops {
+  font-family: "Black Ops One", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+#logo {
+  width: 50px;
+  margin-right: 30px;
+}
+.navbar-nav .nav-item {
+  margin: 0 10px;
+}
+.navbar {
+  display: flex;
+}
+.navbar-nav .nav-link {
+  color: #198879 ;
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.navbar-toggler {
+  border: none;
+}
+.navbar-toggler:focus {
+  outline: none;
+}
+.navbar-toggler-icon {
+  background-color: #D1CEC9;
+}
+</style>

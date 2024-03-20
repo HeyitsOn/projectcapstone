@@ -1,6 +1,7 @@
 import { createStore } from "vuex";
 import axios from "axios";
 import sweet from "sweetalert";
+import Swal from 'sweetalert2';
 import { useCookies } from "vue3-cookies";
 const { cookies } = useCookies();
 import router from "@/router";
@@ -37,7 +38,7 @@ export default createStore({
       state.bookings =value
     },
     setBooking(state, value){
-      state.Booking = value
+      state.booking = value
     }
   },
   actions: {
@@ -222,7 +223,7 @@ export default createStore({
       }
     }
   },
-  async fetchWeddingBookings(context) {
+  async fetchBookings(context) {
     try {
       let { results } = (await axios.get(`${randUrl}weddingBooking`)).data;
       if (results) {
@@ -248,7 +249,7 @@ export default createStore({
 
  
 
-  async createWeddingBooking(context, payload) {
+  async createBooking(context, payload) {
     try {
       let { msg } = await axios.post(`${randUrl}weddingBooking/create`, payload);
       if (msg) {
@@ -274,7 +275,7 @@ export default createStore({
     try {
       let { msg } = await axios.patch(`${randUrl}weddingBooking/update/${payload.id}`, payload.data);
       if (msg) {
-        context.dispatch("fetchweddingBooking");
+        context.dispatch("fetchBookings");
         sweet({
           title: "Booking Updated",
           text: msg,

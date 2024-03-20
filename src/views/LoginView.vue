@@ -23,8 +23,10 @@
     </div>
   </div>
 </template>
+
 <script>
 import axios from "axios";
+import Swal from 'sweetalert2';
 
 export default {
   data() {
@@ -43,24 +45,39 @@ export default {
         });
         const token = response.data.token;
         document.cookie = `token=${token}; path=/`;
-        alert('Login successful!');
+        Swal.fire({
+          icon: 'success',
+          title: 'Login successful!',
+          showConfirmButton: false,
+          timer: 1500
+        });
         console.log(response.data);
         console.log("Email:", this.emailAdd);
-            console.log("Password:", this.userPass);
-      }  catch (error) {
+        console.log("Password:", this.userPass);
+
+        // Update isLoggedIn status
+        this.$root.isLoggedIn = true;
+        this.$router.push('/'); // Redirect to home page after successful login
+      } catch (error) {
         if (error.response && error.response.status === 404) {
           this.loginError = 'User not found. Please sign up first.';
         } else {
           console.error('Error logging in:', error);
-          alert('An error occurred during login. Please try again later.');
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'An error occurred during login. Please try again later.'
+          });
         }
+      }
     }
   }
 }
-};
 </script>
 
+
 <style scoped>
+
 h2{
   margin-left: 50%;
   color:white;
