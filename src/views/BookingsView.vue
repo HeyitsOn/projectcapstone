@@ -53,8 +53,8 @@ export default {
     },
 
     async deleteWeddingBooking(bookingId) {
-      try {
-        const response = await this.$store.dispatch('deleteBooking');
+  try {
+    const response = await this.$store.dispatch('deleteBooking', bookingId);
         
         if (response.data.msg) {
           this.fetchWeddingBookings();
@@ -76,7 +76,7 @@ export default {
     },
   },
   mounted() {
-    this.fetchWeddingBooking;
-  },
+  this.fetchWeddingBookings(); // Add parentheses to call the function
+},
 };
 </script>
