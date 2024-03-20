@@ -1,76 +1,63 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import { weddingBooking } from '../model/index.js';  // Assuming the correct path for weddingBooking model
+import {
+  fetchBookings,
+  fetchBooking,
+  addBooking,
+  updateBooking,
+  deleteBooking,
+} from '../model/index.js'; // Assuming the correct path for weddingBooking model
 
 const BookingRouter = express.Router();
 
 // Fetch all bookings
 BookingRouter.get('/', async (req, res) => {
-    try {
-         weddingBooking.fetchBookings(req, res);  // Updated to use fetchBookings method
-        // res.json(bookings);
-    } catch (err) {
-        res.json({
-            status: res.sendStatus,
-            msg:'Failed to retrieve bookings'
-        })
-        // json({ message: err.message });
-    }
+  try {
+    const bookings = await fetchBookings();
+    res.json(bookings);
+  } catch (err) {
+    res.status(500).json({ msg: 'Failed to retrieve bookings' });
+  }
 });
 
 // Fetch a specific booking by ID
 BookingRouter.get('/:id', async (req, res) => {
-    try {
-         weddingBooking.fetchBooking(req, res);  // Updated to use fetchBooking method
-        // res.json(booking);
-    }catch (err) {
-        res.json({
-            status: res.sendStatus,
-            msg:'Failed to retrieve A booking'
-        })
-        // json({ message: err.message });
-    }
+  try {
+    const booking = await fetchBooking(req.params.id);
+    res.json(booking);
+  } catch (err) {
+    res.status(500).json({ msg: 'Failed to retrieve a booking' });
+  }
 });
 
 // Add a new booking
 BookingRouter.post('/addBooking', bodyParser.json(), async (req, res) => {
-    try {
-     weddingBooking.addBooking(req.body);  // Updated to use addBooking method
-        // res.status(201).json(newBooking);
-    }catch (err) {
-        res.json({
-            status: res.sendStatus,
-            msg:'Failed to add a booking'
-        })
-        // json({ message: err.message });
-    }
+  try {
+    const newBooking = await addBooking(req.body);
+    res.status(201).json(newBooking);
+  } catch (err) {
+    res.status(500).json({ msg: 'Failed to add a booking' });
+  }
 });
+
 // Update a booking by ID
 BookingRouter.patch('/update/:id', bodyParser.json(), async (req, res) => {
-    try {
-     weddingBooking.updateBooking(req.params.id, req.body);  // Updated to use updateBooking method
-        // res.json(updatedBooking);
-    } catch (err) {
-        res.json({
-            status: res.sendStatus,
-            msg:'Failed to update bookings'
-        })
-        // json({ message: err.message });
-    }
+  try {
+    await updateBooking(req.params.id, req.body);
+    res.json({ msg: 'Booking updated successfully' });
+  } catch (err) {
+    res.status(500).json({ msg: 'Failed to update bookings' });
+  }
 });
 
 // Delete a booking by ID
 BookingRouter.delete('/delete/:id', async (req, res) => {
-    try {
-         weddingBooking.deleteBooking(req, res);  // Updated to use deleteBooking method
-        // res.json({ message: 'Booking deleted successfully' });
-    }  catch (err) {
-        res.json({
-            status: res.sendStatus,
-            msg:'Failed to delete bookings'
-        })
-        // json({ message: err.message });
-    }
+  try {
+    await deleteBooking(req.params.id);
+    res.json({ msg: 'Booking deleted successfully' });
+  } catch (err) {
+    res.status(500).json({ msg: 'Failed to delete bookings' });
+  }
 });
 
 export { BookingRouter };

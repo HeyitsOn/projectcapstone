@@ -1,89 +1,94 @@
-import { connection as db } from "../Config/index.js";
+ import { connection as db } from "../Config/index.js";
 
 class WeddingBooking {
-    fetchBookings(req, res) {
-        const qry = `
-        SELECT booking_id, 
-        customer_name,
-        customer_email,
-        event_date, 
-        event_type, 
-        guest_count,
-        booking_date
-        FROM weddingBooking;
+  async fetchBookings(req, res) {
+    const qry = `
+        SELECT
+          booking_id, 
+          customer_name, 
+          customer_email, 
+          event_date, 
+          event_type, 
+          guest_count, 
+          booking_date
+          FROM weddingBooking;
         `;
-        db.query(qry, (err, results) => {
-            if (err) throw err;
-            res.json({
-                status: res.statusCode,
-                results
-            });
-        });
+    const [results] = await db.promise().query(qry);
+    res.json({
+      status: res.statusCode,
+      results
+    });
+  }
+
+  async fetchBooking(req, res) {
+    if (!req.params.id) {
+      throw new Error("Missing required 'id' parameter.");
     }
 
-    async fetchBooking(req, res) {
-
-        const qry = `SELECT booking_id, 
-        customer_name, 
-        customer_email,
-        event_date, 
-        event_type, 
-        guest_count,
-        booking_date
+    const qry = `
+        SELECT 
+          booking_id, 
+          customer_name, 
+          customer_email, 
+          event_date, 
+          event_type, 
+          guest_count, 
+          booking_date
         FROM weddingBooking
         WHERE booking_id = ${req.params.id}
         `;
-        db.query(qry, (err, result) => {
-            if (err) throw err;
-            res.json({
-                status: res.statusCode,
-                result: result[0]
-            });
-        });
-    }
 
-    addBooking(req, res) {
-        const qry = `
+    const [result] = await db.promise().query(qry);
+    res.json({
+      status: res.statusCode,
+      result: result[0]
+    });
+  }
+
+  async addBooking(req, res) {
+    const qry = `
         INSERT INTO weddingBooking
-        SET ?;
+SET ?;
         `;
-        db.query(qry, [req.body], (err) => {
-            if (err) throw err;
-            res.json({
-                status: res.statusCode,
-                msg: 'New booking was added'
-            });
-        });
+    await db.promise().query(qry, [req.body]);
+    res.json({
+      status: res.statusCode,
+      msg: "New booking was added"
+    });
+  }
+
+  async updateBooking(req, res) {
+    if (!req.params.id) {
+      throw new Error("Missing required 'id' parameter.");
     }
 
-    updateBooking(req, res) {
-        const qry = `
+    const qry = `
         UPDATE weddingBooking
         SET ?
         WHERE booking_id = ${req.params.id};
         `;
-        db.query(qry, [req.body], (err) => {
-            if (err) throw err;
-            res.json({
-                status: res.statusCode,
-                msg: "The booking information has been updated."
-            });
-        });
+    await db.promise().query(qry, [req.body]);
+    res.json({
+      status: res.statusCode,
+      msg: "The booking information has been updated."
+    });
+  }
+
+  async deleteBooking(req, res) {
+    if (!req.params.id) {
+      throw new Error("Missing required 'id' parameter.");
     }
 
-    deleteBooking(req, res) {
-        const qry = `
+    const qry = `
         DELETE FROM weddingBooking
         WHERE booking_id = ${req.params.id};
         `;
-        db.query(qry, (err) => {
-            if (err) console.log(err);;
-            res.json({
-                status: res.statusCode,
-                msg: "The booking information has been deleted."
-            });
-        });
-    }
+    await db.promise().query(qry);
+    res.json({
+      status: res.statusCode,
+      msg: "The booking information has been deleted."
+    });
+  }
 }
 
 export { WeddingBooking };
