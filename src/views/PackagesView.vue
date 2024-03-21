@@ -6,7 +6,7 @@
           <input type="text" v-model="searchQuery" placeholder="Search Package by name" class="form-control">
         </div>
         <div class="col-2 mt-4">
-          <button class="btn btn-sm btn-custom" @click="toggleSortOrder">{{ ascendingOrder ? 'Sort by Price (Ascending)' : 'Sort by Price (Descending)' }}</button>
+          <button class="btn btn-sm btn-custom" @click="toggleSortOrder">{{ ascendingOrder ? 'Sort by amount (Ascending)' : 'Sort by amount (Descending)' }}</button>
         </div>
       </div>
       <div class="row gap-5 justify-content-center m-3" v-if="packages">
@@ -19,10 +19,10 @@
             <!-- <p class="card-text text-dark bg-gradient bg-dark-subtle p-2">
               Description: {{ data.packDescription }}
             </p> -->
-            <p class="card-text text-dark bg-gradient bg-dark-subtle p-2">
+            <p class="card-text -subtle p-2">
               Availability: {{ data.packavaiblity }}
             </p>
-            <p class="card-text text-dark bg-gradient bg-dark-subtle p-2">
+            <p class="card-text p-2">
               Amount: R{{ data.packamount }}
             </p>
             <router-link :to="{ name: 'SinglePackage', params: { id: data.packID }}">View More</router-link>
@@ -55,7 +55,7 @@ export default {
     },
     sortedPackages() {
       const sorted = [...this.packages];
-      sorted.sort((a, b) => (this.ascendingOrder ? a.packAmount - b.packAmount : b.packAmount - a.packAmount));
+      sorted.sort((a, b) => (this.ascendingOrder ? a.packamount - b.packamount : b.packamount - a.packamount));
       return sorted;
     },
     filteredPackages() {
@@ -84,5 +84,8 @@ export default {
     height: 100vh;
     position: relative; 
   /* background-color: #cdb9a8; */
+}
+.btn{
+  background-color: aqua;
 }
 </style>

@@ -4,7 +4,7 @@
       <h2 class="display-2">Package Details</h2>
     </div>
     <div class="row">
-      <Card v-if="package">
+      <Card v-if="package" class="Card">
         <template v-slot:cardHeader>
           <h4 class="card-title">{{ package.packName }}</h4>
         </template>
@@ -12,13 +12,13 @@
           <div>
             <img class="img-fluid" :src="package.packUrl" :alt="package.packName"/>
           </div>
-          <p class="card-text text-dark bg-gradient bg-dark-subtle p-2">
+          <p class="card-text text-dark p-2 ">
             {{ package.packDescription }}
           </p>
-          <p class="card-text text-dark bg-gradient bg-dark-subtle p-2">
+          <p class="card-text text-dark  p-2">
             {{ package.packavaiblity }}
           </p>
-          <p class="card-text text-dark bg-gradient bg-dark-subtle p-2">
+          <p class="card-text text-dark  p-2">
             Amount: R{{ package.packamount }} <!-- Fixed variable name -->
           </p>
         </template>
@@ -48,8 +48,26 @@ export default {
 </script>
 
 <style scoped>
-.card-text{
-  width: 100%;
+.Card {
+  background-color: aqua;
+  width: 600px;
+  margin-left:300px;
+  /* height:50px; */
+  animation: colorChange 5s infinite alternate; /* Change color every 5 seconds */
 }
 
+@keyframes colorChange {
+  0% {
+    background-color: rgb(136, 255, 0);
+  }
+  50% {
+    background-color: rgb(248, 3, 3); /* Change to coral halfway through animation */
+  }
+  100% {
+    background-color: rgb(255, 127, 214); /* Change back to aquamarine at the end */
+  }
+}
+.img-fluid{
+margin-left: 10px;
+}
 </style>

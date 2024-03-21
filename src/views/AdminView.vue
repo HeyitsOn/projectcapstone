@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="row">
-      <h2 class="display-4">
+      <h2 class="display-4 d-flex justify-content-between">
         <button class="btn btn-primary mr-2" @click="showUsers = true; showPackages = false">Users</button>
         <button class="btn btn-primary mr-2" @click="showPackages = true; showUsers = false">Packages</button>
       </h2>
