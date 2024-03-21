@@ -3,9 +3,10 @@ import axios from "axios";
 import sweet from "sweetalert";
 import Swal from 'sweetalert2';
 import { useCookies } from "vue3-cookies";
-const { cookies } = useCookies();
 import router from "@/router";
 import AuthenticateUser from "@/service/AuthenticateUser";
+
+const { cookies } = useCookies();
 const randUrl = "https://projectcapstone.onrender.com/";
 
 export default createStore({
@@ -16,10 +17,6 @@ export default createStore({
     singlePackage: null,
     bookings: null,
     booking:null,
-
-  },
-  getters: {
-
   },
   mutations: {
     setUsers(state, value) {
@@ -35,7 +32,7 @@ export default createStore({
       state.singlePackage = value
     },
     setBookings(state,value){
-      state.bookings =value
+      state.bookings = value
     },
     setBooking(state, value){
       state.booking = value
@@ -44,8 +41,7 @@ export default createStore({
   actions: {
     async register(context, payload) {
       try {
-        let { msg } = (await axios.post(`${randUrl}users/register`, payload))
-          .data;
+        let { msg } = (await axios.post(`${randUrl}users/register`, payload)).data;
         if (msg) {
           context.dispatch("fetchUsers");
           sweet({
@@ -54,7 +50,6 @@ export default createStore({
             icon: "success",
             timer: 2000,
           });
-
           router.push({ name: "login" })
         }
       } catch (e) {
@@ -75,7 +70,7 @@ export default createStore({
       } catch (e) {
         sweet({
           title: "Error",
-          text: "Axn error occurred when retrieving users.",
+          text: "An error occurred when retrieving users.",
           icon: "error",
           timer: 2000,
         });
@@ -83,8 +78,7 @@ export default createStore({
     },
     async fetchUser(context, payload) {
       try {
-        let { result } = (await axios.get(`${randUrl}users/${payload.id}`))
-          .data;
+        let { result } = (await axios.get(`${randUrl}users/${payload.id}`)).data;
         if (result) {
           context.commit("setUser", result);
         } else {
@@ -120,23 +114,21 @@ export default createStore({
         sweet({
           title: "Error",
           text: "An error occurred when updating a user.",
-          icon: "success",
+          icon: "error",
           timer: 2000
         })
       }
     },
-    async deleteUser(context, payload) {
+    async deleteUser(context, id) {
       try {
-        let { msg } = await axios.delete(`${randUrl}users/${payload.id}`);
-        if (msg) {
-          context.dispatch("fetchUsers");
-          sweet({
-            title: "Delete user",
-            text: msg,
-            icon: "success",
-            timer: 2000
-          });
-        }
+        let { msg } = await axios.delete(`${randUrl}users/delete/${id}`);
+        context.dispatch("fetchUsers");
+        sweet({
+          title: "Delete user",
+          text: msg,
+          icon: "success",
+          timer: 2000
+        });
       } catch (e) {
         sweet({
           title: "Error",
@@ -148,9 +140,7 @@ export default createStore({
     },
     async login(context, payload) {
       try {
-        const { msg, token, result } = (
-          await axios.post(`${randUrl}users/login`, payload)
-        ).data;
+        const { msg, token, result } = (await axios.post(`${randUrl}users/login`, payload)).data;
         if (result) {
           context.commit("setUser", { msg, result });
           cookies.set("LegitUser", {
@@ -161,8 +151,7 @@ export default createStore({
           AuthenticateUser.applyToken(token);
           sweet({
             title: msg,
-            text: `Welcome back, 
-          ${result?.firstName} ${result?.lastName}`,
+            text: `Welcome back, ${result?.firstName} ${result?.lastName}`,
             icon: "success",
             timer: 2000,
           });
@@ -184,6 +173,25 @@ export default createStore({
         })
       }
     },
+    async addNewPackage(context, add) {
+      try {
+        let { msg } = await axios.post(`${randUrl}packages/addPackage`, add);
+        context.dispatch("fetchPackages");
+        sweet({
+          title: "Adding Packages",
+          text: msg,
+          icon: "success",
+          timer: 2000,
+        });
+      } catch (e) {
+        sweet({
+          title: "Error",
+          text: "An error occurred when adding Package.",
+          icon: "error",
+          timer: 2000,
+        });
+      }
+    },
     async fetchPackages(context) {
       try {
         let { results } = (await axios.get(`${randUrl}packages`)).data;
@@ -201,8 +209,7 @@ export default createStore({
     },
     async fetchPackage(context, payload) {
       try {
-        let { result } = (await axios.get(`${randUrl}packages/${payload.id}`))
-          .data;
+        let { result } = (await axios.get(`${randUrl}packages/${payload.id}`)).data;
         if (result) {
           context.commit("setSinglePackage", result)
         } else {
@@ -221,60 +228,73 @@ export default createStore({
           timer: 2000,
         })
       }
-    }
-  },
-  async fetchBookings(context) {
-    try {
-      let { results } = (await axios.get(`${randUrl}weddingBooking`)).data;
-      if (results) {
-        context.commit("setBookings", results);
-      }else {
+    },
+    async deletePackage(context, payload) {
+      try {
+        let { msg } = await axios.delete(`${randUrl}packages/delete/${payload}`);
+        context.dispatch("fetchPackages");
         sweet({
-          title: "Error",
-          text: "No data was retrieved",
-          icon: "error",
-          timer: 2000,
-        });
-      }
-    } catch (e) {
-      sweet({
-        title: "Error",
-        text: "An error occurred when retrieving wedding bookings.",
-        icon: "error",
-        timer: 2000,
-      });
-      return { success: false, error: e };
-    }
-  },
-
- 
-
-  async createBooking(context, payload) {
-    try {
-      let { msg } = await axios.post(`${randUrl}weddingBooking/create`, payload);
-      if (msg) {
-        context.dispatch("fetchWeddingBookings");
-        sweet({
-          title: "Booking Created",
+          title: "Delete Package",
           text: msg,
           icon: "success",
           timer: 2000,
         });
+      } catch (e) {
+        sweet({
+          title: "Error",
+          text: "An error occurred when deleting a Package.",
+          icon: "error",
+          timer: 2000,
+        });
       }
-    } catch (e) {
-      sweet({
-        title: "Error",
-        text: "An error occurred when creating a wedding booking.",
-        icon: "error",
-        timer: 2000,
-      });
-    }
-  },
-
-  async updateBooking(context, payload) {
-    try {
-      let { msg } = await axios.patch(`${randUrl}weddingBooking/update/${payload.id}`, payload.data);
-      if (msg) {
+    },
+    async fetchBookings(context) {
+      try {
+        let { results } = (await axios.get(`${randUrl}weddingBooking`)).data;
+        if (results)
+        {
+          context.commit("setBookings", results);
+        } else {
+          sweet({
+            title: "Error",
+            text: "No data was retrieved",
+            icon: "error",
+            timer: 2000,
+          });
+        }
+      } catch (e) {
+        sweet({
+          title: "Error",
+          text: "An error occurred when retrieving wedding bookings.",
+          icon: "error",
+          timer: 2000,
+        });
+      }
+    },
+    async createBooking(context, payload) {
+      try {
+        let { msg } = await axios.post(`${randUrl}weddingBooking/create`, payload);
+        if (msg) {
+          context.dispatch("fetchBookings");
+          sweet({
+            title: "Booking Created",
+            text: msg,
+            icon: "success",
+            timer: 2000,
+          });
+        }
+      } catch (e) {
+        sweet({
+          title: "Error",
+          text: "An error occurred when creating a wedding booking.",
+          icon: "error",
+          timer: 2000,
+        });
+      }
+    },
+    async updateBooking(context, payload) {
+      try {
+        let { msg } = await axios.patch(`${randUrl}weddingBooking/update/${payload.booking_id}`, payload);
         context.dispatch("fetchBookings");
         sweet({
           title: "Booking Updated",
@@ -282,21 +302,18 @@ export default createStore({
           icon: "success",
           timer: 2000,
         });
+      } catch (e) {
+        sweet({
+          title: "Error",
+          text: "An error occurred when updating a booking.",
+          icon: "error",
+          timer: 2000,
+        });
       }
-    } catch (e) {
-      sweet({
-        title: "Error",
-        text: "An error occurred when updating a booking.",
-        icon: "error",
-        timer: 2000,
-      });
-    }
-  },
-
-  async deleteBooking(context, payload) {
-    try {
-      let { msg } = await axios.delete(`${randUrl}bookings/${payload.id}`);
-      if (msg) {
+    },
+    async deleteBooking(context, payload) {
+      try {
+        let { msg } = await axios.delete(`${randUrl}weddingBooking/delete/${payload}`);
         context.dispatch("fetchBookings");
         sweet({
           title: "Booking Deleted",
@@ -304,16 +321,15 @@ export default createStore({
           icon: "success",
           timer: 2000,
         });
+      } catch (e) {
+        sweet({
+          title: "Error",
+          text: "An error occurred when deleting a booking.",
+          icon: "error",
+          timer: 2000,
+        });
       }
-    } catch (e) {
-      sweet({
-        title: "Error",
-        text: "An error occurred when deleting a booking.",
-        icon: "error",
-        timer: 2000,
-      });
-    }
+    },
   },
-
   modules: {},
 });
