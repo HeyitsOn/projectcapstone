@@ -1,5 +1,6 @@
 <template>
-  <div class="contact-box">
+  <section>
+    <div class="contact-box">
     <div class="contact">
       <div class="contact-section">
         <div class="contact-content">
@@ -19,6 +20,8 @@
       </div>
     </div>
   </div>
+  </section>
+  
 </template>
 <style scoped>
 h2 {

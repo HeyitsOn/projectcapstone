@@ -57,8 +57,8 @@
             <td>{{ user.emailAdd }}</td>
             <td>{{ user.userRole }}</td>
             <td class="d-flex justify-content-between">
-              <button class="btn btn-success">Edit</button>
-              <button class="btn btn-danger">Delete</button>
+              <button class="btn btn-success"  @click="edituser(user.userID)">Edit</button>
+             <button class="btn btn-success" @click="deleteUser(user.userID)">Delete</button>
             </td>
           </tr>
         </tbody>
@@ -111,8 +111,8 @@
                             <td>{{ Package.packavaiblity }}</td>
                             <td>R {{ Package.packamount }}</td>
                             <td class="d-flex justify-content-between">
-                                <button class="btn btn-success">Edit</button>
-                                <button class="btn btn-success">Delete</button>
+                                <button class="btn btn-success"  @click="editPackage(Package.packID)">Edit</button>
+                                <button class="btn btn-success" @click="deletePackage(Package.packID)">Delete</button>
                             </td>
                         </tr>
                     </tbody>
@@ -123,31 +123,47 @@
 
 <script>
   export default {
-    data() {
-      return {
-        showUsers: true,
-        showPackages: false,
-        firstName: ''
-      };
+  data() {
+    return {
+      showUsers: true,
+      showPackages: false,
+      firstName: ''
+    };
+  },
+  methods: {
+    async deleteUser(userID) {
+      try {
+        await this.$store.dispatch('deleteUser', userID);
+      } catch (error) {
+        console.error("Error deleting Users:", error);
+        // Handle error if necessary
+      }
     },
-    methods: {
-      register() {
-        this.$store.dispatch('register');
-      },
+    // async Package(packID) {
+    //   try {
+    //     await this.$store.dispatch('deletePackage', packID);
+    //   } catch (error) {
+    //     console.error("Error deleting Package:", error);
+    //     // Handle error if necessary
+    //   }
+    // },
+    register() {
+      this.$store.dispatch('register');
+    }
+  },
+  computed: {
+    users() {
+      return this.$store.state.users;
     },
-    computed: {
-      users() {
-        return this.$store.state.users;
-      },
-      packages() {
-        return this.$store.state.packages;
-      },
-    },
-    mounted() {
-      this.$store.dispatch("fetchUsers");
-      this.$store.dispatch("fetchPackages");
-    },
-  };
+    packages() {
+      return this.$store.state.packages;
+    }
+  },
+  mounted() {
+    this.$store.dispatch("fetchUsers");
+    this.$store.dispatch("fetchPackages");
+  }
+};
 </script>
 
 <style scoped>

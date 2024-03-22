@@ -76,7 +76,7 @@ export default {
 </script>
 
 
-<style scoped>
+<style scoped>  
 
 h2{
   margin-left: 50%;

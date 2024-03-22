@@ -14,6 +14,7 @@
           <template #cardHeader>
             <img :src="data.packUrl" class="car-img-top" alt="" height="200" width = "200">
             <h4 class="card-title">{{ data.packName }}</h4>
+            
           </template>
           <template #cardBody>
             <!-- <p class="card-text text-dark bg-gradient bg-dark-subtle p-2">

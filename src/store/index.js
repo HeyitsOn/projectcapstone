@@ -39,6 +39,7 @@ export default createStore({
     }
   },
   actions: {
+
     async register(context, payload) {
       try {
         let { msg } = (await axios.post(`${randUrl}users/register`, payload)).data;
