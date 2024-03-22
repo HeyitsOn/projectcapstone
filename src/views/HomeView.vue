@@ -33,8 +33,24 @@
 <style scoped>
 .gal-text{
   margin-left:40%;
- 
 }
+.gal{
+ animation: colorChange 5s infinite alternate; /* Change color every 5 seconds */
+}
+
+@keyframes colorChange {
+  0% {
+    background-color: rgb(255, 183, 0);
+  }
+  50% {
+    background-color: rgb(3, 85, 248); 
+  }
+  100% {
+    background-color: rgb(255, 127, 214); /* Change back to aquamarine at the end */
+  }
+}
+
+
 .image{
   width: 300px;
   height: 200px;
@@ -45,8 +61,9 @@
   width: 300px;
   height: 200px;
   margin-left:50px;
-  /* height: 100vh; */
+ 
 }
+
   section {
     background-image: url("https://mcstaging-blog.astteria.com/wp-content/uploads/2023/02/Untitled-design-60.png");
     background-repeat: no-repeat;

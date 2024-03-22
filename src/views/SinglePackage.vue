@@ -61,7 +61,7 @@ export default {
     background-color: rgb(136, 255, 0);
   }
   50% {
-    background-color: rgb(248, 3, 3); /* Change to coral halfway through animation */
+    background-color: rgb(248, 3, 3); 
   }
   100% {
     background-color: rgb(255, 127, 214); /* Change back to aquamarine at the end */
